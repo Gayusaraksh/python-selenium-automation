@@ -1,16 +1,18 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 
 
 def browser_init(context):
     """
     :param context: Behave context
     """
-    context.driver = webdriver.Chrome(executable_path='/Users/bala/Automation/python-selenium-automation/chromedriver')
+    service = Service(executable_path='/Users/bala/Automation/python-selenium-automation/chromedriver')
+    context.driver = webdriver.Chrome(service=service)
     # context.browser = webdriver.Safari()
     # context.browser = webdriver.Firefox()
 
-    context.driver.maximize_window()
-    context.driver.implicitly_wait(4)
+    # context.driver.maximize_window()
+    context.driver.implicitly_wait(400)
 
 
 def before_scenario(context, scenario):

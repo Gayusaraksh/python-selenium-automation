@@ -22,7 +22,7 @@ def input_search(context, search_word):
 
 @when('Click on search icon')
 def click_search_icon(context):
-    context.driver.find_element(*SEARCH_SUBMIT).click()
+    context.driver.find_element(By.CSS_SELECTOR,'input#nav-search-submit-button').click()
     sleep(1)
 
 
