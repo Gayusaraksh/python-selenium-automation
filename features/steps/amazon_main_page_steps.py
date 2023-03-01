@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
+from selenium.webdriver.support import expected_conditions as EC
 
 
 AMAZON_SEARCH_BOX = (By.CSS_SELECTOR,'input#twotabsearchtextbox')
@@ -12,6 +13,7 @@ CUSTOMER_SERVICE_LINK = (By.CSS_SELECTOR,'a[data-csa-c-content-id="nav_cs_custom
 @given('Open Amazon page')
 def open_amazon(context):
     context.driver.get("https://www.amazon.com")
+    context.driver.refresh()
 
 
 @when('Enter {searchterm} in the search box')
@@ -23,20 +25,22 @@ def items_search(context,searchterm):
 def click_search_icon(context):
     context.driver.find_element(*SEARCH_ICON).click()
 
+
 @when('Click on Customer Service link')
 def customer_service_link(context):
     context.driver.find_element(*CUSTOMER_SERVICE_LINK).click()
 
 
-@then('Check for {expected_count} item in the cart')
-def cart_number(context,expected_count):
-    count = context.driver.find_element(*CART_ITEMS_COUNT).text
-    assert count == expected_count, f'Both are not same'
-
-
 @when('Click on Orders button')
 def click_orders(context):
     context.driver.find_element(*ORDERS_ICON).click()
+
+
+@then('Check for {expected_count} item in the cart')
+def cart_number(context, expected_count):
+    count = context.driver.find_element(*CART_ITEMS_COUNT).text
+    assert count == expected_count, f'Both are not same'
+
 
 
 

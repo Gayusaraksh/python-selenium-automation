@@ -9,3 +9,19 @@ Feature: Amazon adding items to cart tests
     And Click on Add to cart
     And Click on cart icon
     Then Check for 1 item in the cart
+
+
+  Scenario: User can click through product colors.
+    Given Open Amazon page
+    When Enter Handbags in the search box
+    And Click on search icon
+    And Select item from the search list
+    Then Verify user can click through colors
+
+
+  Scenario: User can see product name for every product on amazon search results.
+    Given Open Amazon page
+    When Enter coffee in the search box
+    And Click on search icon
+    Then Verify that every product on Amazon search results page has product name
+    And Verify that every product on Amazon search results page has product image
