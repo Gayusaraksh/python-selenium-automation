@@ -5,3 +5,4 @@ Feature: BestSellers page link tests
     Given Open Amazon page
     When Click on Best Sellers link
     Then Verify 5 links are present on the Best Sellers page
+    Then Click on each top links and check correct page opened

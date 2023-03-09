@@ -21,7 +21,9 @@ def click_colors(context):
     all_colors = context.driver.find_elements(*CLICK_COLORS)
     for color in all_colors:
         color.click()
+        time.sleep(2)
         current_color = context.driver.wait.until(EC.visibility_of_element_located(CURRENT_COLOR)).text
+
         print('Current color is: ', current_color)
         current_price = context.driver.find_element(*CURRENT_PRICE).text
         print('Current price is ', current_price)
