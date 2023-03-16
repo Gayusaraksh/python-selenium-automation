@@ -12,36 +12,29 @@ RECOMMENDED_TOPICS = (By.CSS_SELECTOR,'ul.help-topics')
 
 @then('Check {expected_text} text is present on the page')
 def welcome_text(context,expected_text):
-    actual_text = context.driver.find_element(*WELCOME_TEXT).text
-    assert actual_text == expected_text,f'{expected_text} is not same as {actual_text}'
+    context.app.customer_service_page.verify_welcome_text(expected_text)
 
 
 @then('Check Table of contents present on the page')
 def card_container(context):
-    actual_result = context.driver.find_element(*CARD_CONTAINER).is_displayed()
-    print(actual_result)
+    context.app.customer_service_page.verify_card_container()
 
 
 @then('Check {expected_text} is present on the page')
 def search_help_library(context,expected_text):
-    actual_text = context.driver.find_element(*SEARCH_HELP_LIBRARY).text
-    assert actual_text == expected_text, f'{expected_text} is not same as {actual_text}'
+    context.app.customer_service_page.verify_search_help_library(expected_text)
 
 
-@then('Check {search_field} shown in the page')
-def search_field(context,search_field):
-    actual_text = context.driver.find_element(*QUESTIONS_INPUT_FIELD)
-    print(actual_text)
+@then('Check Search box shown in the page')
+def search_field(context):
+    context.app.customer_service_page.verify_search_query_field()
 
 
 @then('Check {expected_text} present on the page')
 def all_help_topics(context,expected_text):
-    actual_text = context.driver.find_element(*ALL_HELP_TOPICS).text
-    assert actual_text == expected_text,f'{expected_text} is not same as {actual_text}'
+    context.app.customer_service_page.verify_all_help_topics(expected_text)
 
 
 @then('Check Recommended Topics present on the customer service page')
 def recommended_topics(context):
-    actual_text = context.driver.find_element(*RECOMMENDED_TOPICS).is_displayed()
-    print(actual_text)
-
+    context.app.customer_service_page.verify_recommended_topics()
