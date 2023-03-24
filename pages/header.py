@@ -2,6 +2,8 @@ import time
 from selenium.webdriver.common.by import By
 from pages.base_page import Page
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class Header(Page):
@@ -15,6 +17,11 @@ class Header(Page):
     CURRENT_LINK = (By.CSS_SELECTOR, 'a[href*="/ref=zg_bs_tab"]')
     BANNER_TEXT = (By.ID, "zg_banner_text")
     CUSTOMER_SERVICE_LINK = (By.XPATH, '//a[text()="Customer Service"]')
+    SELECT_DEPARTMENT = (By.ID, "searchDropdownBox")
+    LANGUAGE_OPTIONS = (By.CSS_SELECTOR, 'a#icp-nav-flyout')
+    SPANISH_LANG = (By.CSS_SELECTOR, 'a[href="#switch-lang=es_US"]')
+    NEW_ARRIVALS = (By.CSS_SELECTOR, 'a.nav-a.nav-hasArrow[aria-label="New Arrivals"]')
+    WOMEN_COLLECTIONS = (By.XPATH, '//*[contains(@href,"fashion-women")]')
 
     def search_input(self,text):
         self.input_text(text, *self.AMAZON_SEARCH_BOX)
@@ -52,4 +59,28 @@ class Header(Page):
 
     def click_customer_service(self):
         self.click(*self.CUSTOMER_SERVICE_LINK)
+
+    def select_dept_by_alias(self,alias):
+        department_dd = self.find_element(*self.SELECT_DEPARTMENT)
+        select = Select(department_dd)
+        select.select_by_value(f"search-alias={alias}")
+
+    def hover_over_lang(self):
+        lang_options = self.find_element(*self.LANGUAGE_OPTIONS)
+        actions = ActionChains(self.driver)
+        actions.move_to_element(lang_options)
+        actions.perform()
+
+    def check_spanish_present(self):
+        self.wait_for_element_appear(*self.SPANISH_LANG)
+
+    def hover_over_new_arr(self):
+        new_arrivals_link = self.find_element(*self. NEW_ARRIVALS)
+        actions = ActionChains(self.driver)
+        actions.move_to_element(new_arrivals_link)
+        actions.perform()
+
+    def check_women_present(self):
+        self.wait_for_element_appear(*self.WOMEN_COLLECTIONS)
+
 

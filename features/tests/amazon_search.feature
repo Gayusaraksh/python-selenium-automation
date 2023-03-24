@@ -25,3 +25,11 @@ Feature: Amazon adding items to cart tests
     And Click on search icon
     Then Verify that every product on Amazon search results page has product name
     And Verify that every product on Amazon search results page has product image
+
+
+  Scenario: User can select and search in a department.
+    Given Open Amazon page
+    When Select department by alias amazonfresh
+    When Enter Cucumber in the search box
+    When Click on search icon
+    Then Verify amazonfresh department is selected
