@@ -1,6 +1,6 @@
 # Created by gayathri at 2/14/23
 Feature: Amazon adding items to cart tests
-
+  @smoke
   Scenario: User can add items to the cart.
     Given Open Amazon page
     When Enter Handbags in the search box

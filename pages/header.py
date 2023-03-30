@@ -4,6 +4,7 @@ from pages.base_page import Page
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.action_chains import ActionChains
+from support.logger import logger
 
 
 class Header(Page):
@@ -27,12 +28,15 @@ class Header(Page):
         self.input_text(text, *self.AMAZON_SEARCH_BOX)
 
     def click_search_icon(self):
+        logger.info('Clicking search icon')
         self.click(*self.SEARCH_ICON)
 
     def click_orders(self):
+        logger.info('Clicking orders icon')
         self.click(*self.ORDERS_ICON)
 
     def click_cart_icon(self):
+        logger.info('Clicking cart icon')
         self.click(*self.CART_ICON)
 
     def check_cart_count(self,expected_count):
